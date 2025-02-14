@@ -1,0 +1,32 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Sample dataset
+X = np.array([1, 2, 3, 4, 5])
+Y = np.array([2, 4, 5, 4, 5])
+
+# Calculate mean of X and Y
+mean_x = np.mean(X)
+mean_y = np.mean(Y)
+
+# Calculate coefficients (slope and intercept)
+numerator = np.sum((X - mean_x) * (Y - mean_y))
+denominator = np.sum((X - mean_x) ** 2)
+slope = numerator / denominator
+intercept = mean_y - (slope * mean_x)
+
+# Predict function
+def predict(x):
+    return slope * x + intercept
+
+# Plot the data and regression line
+plt.scatter(X, Y, color="blue", label="Data Points")
+plt.plot(X, predict(X), color="red", label="Regression Line")
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.legend()
+plt.show()
+
+# Test the model
+x_test = 6
+print(f"Predicted value for x = {x_test}: {predict(x_test)}")
